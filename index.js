@@ -42,16 +42,18 @@ app.get('/studentApp/api/v1/students',(req,res)=>{
 // creating new students:post request
 app.post('/studentApp/api/v1/classes/:classid/students',(req,res)=>{
     console.log(req.params)
-    const className=req.params.classid
-    const studentBody=req.body
-    // for getting frontend data we do req.body
-    console.log(req.query)
+    const className=req.params.classid // for getting id from url 
+    const studentBody=req.body //for getting frontend data we do req.body
+    
+    console.log(req.query) // for getting query which is written by ?value
     students[className][req.body.name]=req.body
 
    if(req.query.class){
     res.status(200).send(students[req.query.class])
+   }else{
+    res.status(200).send(students)
    }
-   res.status(200).send(students)
+  
 })
 
 
